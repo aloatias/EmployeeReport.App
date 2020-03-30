@@ -17,12 +17,14 @@ describe('AppComponent', () => {
     { name: 'Mike', age: 51 },
   ];
 
+  // Default test created by the framework
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
+  // Default test created by the framework
   it(`should have as title 'Employee Report'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
@@ -60,8 +62,8 @@ describe('AppComponent', () => {
   });
 
   function compareElement(a, b) {
-    const empA = a.name;
-    const empB = b.name;
+    let empA = a.name;
+    let empB = b.name;
     
     let comparison = 0;
 
