@@ -39,10 +39,10 @@ describe('AppComponent', () => {
     ]
 
     // Act
-    let actualLegalAgeEmployees = employees.filter(e => e.age >= 18);
+    let actualLegalAgeEmployees = getEmployeesOverLegalAge();
 
     // Test
-    expect(expectedLegalAgeEmployees).toEqual(actualLegalAgeEmployees);
+    expect(actualLegalAgeEmployees).toEqual(expectedLegalAgeEmployees);
   });
 
   it('should get employees sorted by name', () => {
@@ -55,13 +55,29 @@ describe('AppComponent', () => {
     ]
 
     // Act
-    let actualLegalAgeEmployees = employees.sort(compareElement);
+    let actualLegalAgeEmployees = SortEmployeesByName();
 
     // Test
-    expect(expectedSortedEmployees).toEqual(actualLegalAgeEmployees);
+    expect(actualLegalAgeEmployees).toEqual(expectedSortedEmployees);
   });
 
-  function compareElement(a, b) {
+  it('should get employees on capital letters', () => {
+    // Prepare
+    let expectedEmployeesOnCapitalLetters = [
+      { name: 'MAX', age: 17 },
+      { name: 'MIKE', age: 51 },
+      { name: 'NINA', age: 15 },
+      { name: 'SEPP', age: 18 },
+    ]
+
+    // Act
+    let actualEmployeesOnCapitalLetters = getEmployeesOnCapitalLetters();
+
+    // Test
+    expect(actualEmployeesOnCapitalLetters).toEqual(expectedEmployeesOnCapitalLetters);
+  });
+
+  function compareElement(a, b): number {
     let empA = a.name;
     let empB = b.name;
     
@@ -74,5 +90,28 @@ describe('AppComponent', () => {
     }
 
     return comparison;
+  }
+
+  function getEmployeesOnCapitalLetters()
+  {
+    let employeesCapitalLetters = [];
+
+    employees.forEach(e => {
+      let currentEmployee = e;
+      currentEmployee.name = e.name.toUpperCase();
+
+      employeesCapitalLetters.push(currentEmployee);
+    });
+
+    return employeesCapitalLetters;
+  }
+
+  function getEmployeesOverLegalAge()
+  {
+    return employees.filter(e => e.age >= 18);
+  }
+
+  function SortEmployeesByName() {
+    return employees.sort(compareElement)
   }
 });
