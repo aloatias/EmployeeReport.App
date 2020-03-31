@@ -52,9 +52,7 @@ export class EmployeerepositoryComponent implements OnInit {
   }
 
   getEmployees(employeesFilters: EmployeeFilters) {
-    let results = this._employees;
-    
-    results = this._employees.filter(
+    this._employees = this._employees.filter(
       e => employeesFilters.IsOverLegalAge == true ?
        e.age >= 18 : 
        true
@@ -62,20 +60,19 @@ export class EmployeerepositoryComponent implements OnInit {
 
     if (employeesFilters.CapitalizeNames)
     {
-      results.forEach(e => {
+      this._employees.forEach(e => {
         e.name = e.name.toUpperCase();
       });
     }
 
     if (employeesFilters.Sort !== "none") {
       if (employeesFilters.Sort === "asc") {
-        results.sort(this.compareElements());
+        this._employees.sort(this.compareElementAsc);
+      } else {
+        this._employees.sort(this.compareElementDesc);
       }
     }
 
-    return results;
-  }
-  compareElements(): (a: any, b: any) => number {
-    throw new Error("Method not implemented.");
+    return this._employees;
   }
 }
