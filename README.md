@@ -7,4 +7,4 @@ Requirements:
   . Npm packages installed
   . Node.js runtime
   
-Write on the command line "ng test" to launch angular's jasmine test suite and see the results.
+Write on the command line "ng test" to launch angular's Karma test suite and see the results.
