@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EmployeerepositoryComponent } from './employeerepository.component';
+import { EmployeeFilters } from './classes/EmployeeFilters';
 
 describe('EmployeerepositoryComponent', () => {
   let component: EmployeerepositoryComponent;
@@ -29,8 +30,10 @@ describe('EmployeerepositoryComponent', () => {
       { name: 'Mike', age: 51 }
     ];
 
+    let employeesFilters = new EmployeeFilters(true, false, "none")
+
     // Act
-    let actualLegalAgeEmployees = component.getEmployeesOverLegalAge();
+    let actualLegalAgeEmployees = component.getEmployees(employeesFilters);
 
     // Test
     expect(actualLegalAgeEmployees).toEqual(expectedLegalAgeEmployees);
@@ -42,11 +45,13 @@ describe('EmployeerepositoryComponent', () => {
       { name: 'Max', age: 17 },
       { name: 'Mike', age: 51 },
       { name: 'Nina', age: 15 },
-      { name: 'Sepp', age: 18 }
+      { name: 'Sepp', age: 18 } 
     ];
 
+    let employeesFilters = new EmployeeFilters(false, false, "asc");
+
     // Act
-    let actualSortedEmployees = component.sortEmployeesByNameAsc();
+    let actualSortedEmployees = component.getEmployees(employeesFilters);
 
     // Test
     expect(actualSortedEmployees).toEqual(expectedSortedEmployees);
@@ -61,8 +66,10 @@ describe('EmployeerepositoryComponent', () => {
       { name: 'MIKE', age: 51 },
     ];
 
+    let employeesFilters = new EmployeeFilters(false, true, "none")
+
     // Act
-    let actualEmployeesOnCapitalLetters = component.getEmployeesOnCapitalLetters();
+    let actualEmployeesOnCapitalLetters = component.getEmployees(employeesFilters);
 
     // Test
     expect(actualEmployeesOnCapitalLetters).toEqual(expectedEmployeesOnCapitalLetters);
@@ -77,8 +84,10 @@ describe('EmployeerepositoryComponent', () => {
       { name: 'Max', age: 17 }
     ];
 
+    let employeesFilters = new EmployeeFilters(false, false, "desc");
+
     // Act
-    let actualSortedEmployees = component.sortEmployeesByNameDesc();
+    let actualSortedEmployees = component.getEmployees(employeesFilters);
 
     // Test
     expect(actualSortedEmployees).toEqual(expectedSortedEmployees);

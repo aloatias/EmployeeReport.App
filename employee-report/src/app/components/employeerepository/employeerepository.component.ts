@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeFilters } from './classes/EmployeeFilters';
 
 @Component({
   selector: 'app-employeerepository',
@@ -50,28 +51,28 @@ export class EmployeerepositoryComponent implements OnInit {
     return comparison;
   }
 
-  getEmployeesOnCapitalLetters() {
-    let employeesCapitalLetters = [];
+  getEmployees(employeesFilters: EmployeeFilters) {
+    this._employees = this._employees.filter(
+      e => employeesFilters.IsOverLegalAge == true ?
+       e.age >= 18 : 
+       true
+    );
 
-    this._employees.forEach(e => {
-      let currentEmployee = e;
-      currentEmployee.name = e.name.toUpperCase();
+    if (employeesFilters.CapitalizeNames)
+    {
+      this._employees.forEach(e => {
+        e.name = e.name.toUpperCase();
+      });
+    }
 
-      employeesCapitalLetters.push(currentEmployee);
-    });
+    if (employeesFilters.Sort !== "none") {
+      if (employeesFilters.Sort === "asc") {
+        this._employees.sort(this.compareElementAsc);
+      } else {
+        this._employees.sort(this.compareElementDesc);
+      }
+    }
 
-    return employeesCapitalLetters;
-  }
-
-  getEmployeesOverLegalAge() {
-    return this._employees.filter(e => e.age >= 18);
-  }
-
-  sortEmployeesByNameAsc() {
-    return this._employees.sort(this.compareElementAsc)
-  }
-
-  sortEmployeesByNameDesc() {
-    return this._employees.sort(this.compareElementDesc)
+    return this._employees;
   }
 }
