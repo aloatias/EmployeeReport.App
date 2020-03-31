@@ -27,7 +27,7 @@ describe('EmployeerepositoryComponent', () => {
     let expectedLegalAgeEmployees = [
       { name: 'Sepp', age: 18 },
       { name: 'Mike', age: 51 }
-    ]
+    ];
 
     // Act
     let actualLegalAgeEmployees = component.getEmployeesOverLegalAge();
@@ -43,7 +43,7 @@ describe('EmployeerepositoryComponent', () => {
       { name: 'Mike', age: 51 },
       { name: 'Nina', age: 15 },
       { name: 'Sepp', age: 18 }
-    ]
+    ];
 
     // Act
     let actualLegalAgeEmployees = component.SortEmployeesByName();
@@ -59,7 +59,7 @@ describe('EmployeerepositoryComponent', () => {
       { name: 'SEPP', age: 18 },
       { name: 'NINA', age: 15 },
       { name: 'MIKE', age: 51 },
-    ]
+    ];
 
     // Act
     let actualEmployeesOnCapitalLetters = component.getEmployeesOnCapitalLetters();
