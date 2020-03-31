@@ -20,7 +20,7 @@ export class EmployeerepositoryComponent implements OnInit {
   ngOnInit(): void {  
   }
 
-  compareElement(a, b): number {
+  compareElementAsc(a, b): number {
     let empA = a.name;
     let empB = b.name;
     
@@ -29,6 +29,21 @@ export class EmployeerepositoryComponent implements OnInit {
     if (empA > empB) {
       comparison = 1;
     } else if (empA < empB) {
+      comparison = -1;
+    }
+
+    return comparison;
+  }
+
+  compareElementDesc(a, b): number {
+    let empA = a.name;
+    let empB = b.name;
+    
+    let comparison = 0;
+
+    if (empA < empB) {
+      comparison = 1;
+    } else if (empA > empB) {
       comparison = -1;
     }
 
@@ -52,7 +67,11 @@ export class EmployeerepositoryComponent implements OnInit {
     return this._employees.filter(e => e.age >= 18);
   }
 
-  SortEmployeesByName() {
-    return this._employees.sort(this.compareElement)
+  sortEmployeesByNameAsc() {
+    return this._employees.sort(this.compareElementAsc)
+  }
+
+  sortEmployeesByNameDesc() {
+    return this._employees.sort(this.compareElementDesc)
   }
 }

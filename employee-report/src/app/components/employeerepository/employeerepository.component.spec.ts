@@ -36,7 +36,7 @@ describe('EmployeerepositoryComponent', () => {
     expect(actualLegalAgeEmployees).toEqual(expectedLegalAgeEmployees);
   });
 
-  it('should get employees sorted by name', () => {
+  it('should get employees sorted by name asc', () => {
     // Prepare
     let expectedSortedEmployees = [
       { name: 'Max', age: 17 },
@@ -46,10 +46,10 @@ describe('EmployeerepositoryComponent', () => {
     ];
 
     // Act
-    let actualLegalAgeEmployees = component.SortEmployeesByName();
+    let actualSortedEmployees = component.sortEmployeesByNameAsc();
 
     // Test
-    expect(actualLegalAgeEmployees).toEqual(expectedSortedEmployees);
+    expect(actualSortedEmployees).toEqual(expectedSortedEmployees);
   });
 
   it('should get employees on capital letters', () => {
@@ -66,5 +66,21 @@ describe('EmployeerepositoryComponent', () => {
 
     // Test
     expect(actualEmployeesOnCapitalLetters).toEqual(expectedEmployeesOnCapitalLetters);
+  });
+
+  it('should get employees sorted by name desc', () => {
+    // Prepare
+    let expectedSortedEmployees = [
+      { name: 'Sepp', age: 18 },
+      { name: 'Nina', age: 15 },
+      { name: 'Mike', age: 51 },
+      { name: 'Max', age: 17 }
+    ];
+
+    // Act
+    let actualSortedEmployees = component.sortEmployeesByNameDesc();
+
+    // Test
+    expect(actualSortedEmployees).toEqual(expectedSortedEmployees);
   });
 });
