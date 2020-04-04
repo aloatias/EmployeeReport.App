@@ -23,7 +23,7 @@ describe('EmployeerepositoryComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get employees older than 18', () => {
+  it('should get employees who are at least 18', () => {
     // Prepare
     let expectedLegalAgeEmployees = [
       { name: 'Sepp', age: 18 },
@@ -91,5 +91,57 @@ describe('EmployeerepositoryComponent', () => {
 
     // Test
     expect(actualSortedEmployees).toEqual(expectedSortedEmployees);
+  });
+
+  it('should get capital name employees sorted by name desc', () => {
+    // Prepare
+    let expectedSortedEmployees = [
+      { name: 'SEPP', age: 18 },
+      { name: 'NINA', age: 15 },
+      { name: 'MIKE', age: 51 },
+      { name: 'MAX', age: 17 }
+    ];
+
+    let employeesFilters = new EmployeeFilters(false, true, "desc");
+
+    // Act
+    let actualSortedEmployees = component.getEmployees(employeesFilters);
+
+    // Test
+    expect(actualSortedEmployees).toEqual(expectedSortedEmployees);
+  });
+
+  it('should get capital name employees sorted by name asc', () => {
+    // Prepare
+    let expectedSortedEmployees = [
+      { name: 'MAX', age: 17 },
+      { name: 'MIKE', age: 51 },
+      { name: 'NINA', age: 15 },
+      { name: 'SEPP', age: 18 } 
+    ];
+
+    let employeesFilters = new EmployeeFilters(false, true, "asc");
+
+    // Act
+    let actualSortedEmployees = component.getEmployees(employeesFilters);
+
+    // Test
+    expect(actualSortedEmployees).toEqual(expectedSortedEmployees);
+  });
+
+  it('should get capital name employees who are at least 18', () => {
+    // Prepare
+    let expectedLegalAgeEmployees = [
+      { name: 'SEPP', age: 18 },
+      { name: 'MIKE', age: 51 }
+    ];
+
+    let employeesFilters = new EmployeeFilters(true, true, "none")
+
+    // Act
+    let actualLegalAgeEmployees = component.getEmployees(employeesFilters);
+
+    // Test
+    expect(actualLegalAgeEmployees).toEqual(expectedLegalAgeEmployees);
   });
 });
